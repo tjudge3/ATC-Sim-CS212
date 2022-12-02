@@ -1,10 +1,7 @@
-import java.io.IOException;
-import java.util.Map;
+//import java.io.IOException;
+//import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentHashMap;
-
-//changed the name to coincide with my other name change
-//I modified some of the given code. If you need me to change it back to the given code for assignment, let me know.
+//import java.util.concurrent.ConcurrentHashMap;
 public class ATC
 {
     static double meanArrivalFreq = 0.0;
@@ -13,7 +10,6 @@ public class ATC
     static ATCSim sim = new ATCSim();
 
     public static void main(String[] args) {
-        //It didn't "feel right" without a menu, if that makes sense.
         System.out.println("ATC Menu\n");
 
 //Begin Menu Actual
