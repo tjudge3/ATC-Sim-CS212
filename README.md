@@ -37,14 +37,20 @@
 	- [ ] Algorithm Chooser 
 	- [ ] SubMenu - Display/Exports
 	- [ ] SubMenu - Export Types
-- [ ] Create GUI
-	- [ ] For Info Display      
-	- [ ] For User Input (Parameters)      
-	- [ ] For Export (Menu)
-	- [ ] For Export Dialog box
+- [ ] Create GUI App || Web Interface
+	- [ ] (If) Create GUI
+		- [ ] For Info Display      
+		- [ ] For User Input (Parameters)      
+		- [ ] For Export (Menu)
+		- [ ] For Export Dialog box
+	- [ ] (else) Create Web
+		- [ ] For Info Display      
+		- [ ] For User Input (Parameters)      
+		- [ ] For Export (Menu)
+		- [ ] For Export Dialog box		
 - [ ] Clean up code
 	- [ ] Remove unused imports
 	<!-- https://github.com/blazegraph/database/blob/3127706f0b6504838daae226b9158840d2df1744/blazegraph-colt/src/main/java/cern/jet/random/NegativeBinomial.java -->
 	
   
-  ###### Last Updated - 2022-01-12 - tjudge3
+  ###### Last Updated - 2022-12-02 - tjudge3
