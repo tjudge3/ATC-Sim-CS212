@@ -1,8 +1,10 @@
 # ATC-Sim-CS212
+#### This ToDo Represents everything beyond the requirements of the assignment aka this is the "Having fun with it" stuff. 
+
 - [X] Change naming to be a bit more logical
 	- [ ] Check this again 
 - [X] Change mean to lambda to make algo more efficent
-- [ ] Create output_block for report display/printing
+- [X] Create output_block for report display/printing
 - [X] Implement printSimStatsFile
 - [X] Create Console Menu System
 	- [X] Decide on switch v. if v. hashmap v. enum 
