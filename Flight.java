@@ -9,6 +9,7 @@ class Flight {
         this.flightNumber = flightNumber;
         this.flightType = flightType;
     }
+    @Override
     public String toString(){
         return "Flight " + flightType + ": " + flightNumber;
     }
