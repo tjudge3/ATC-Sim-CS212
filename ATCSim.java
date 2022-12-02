@@ -3,13 +3,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 //For printing
-import java.io.FileWriter;
+import java.io.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
-public class ATCSim
-{
+public class ATCSim {
     final int MIN_FLIGHT_SPACING = 10;
     int flight_number;
     int timerCounter;
@@ -26,59 +24,64 @@ public class ATCSim
         System.out.println("******************************************");
         System.out.println("Automated Air Traffic Control Simulator Summary Statistics");
         System.out.println("******************************************");
-        System.out.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
-        System.out.println("Number of arrivals: " + arrivalStatistics.size());
-        System.out.println("Number of departures: " + departureStatistics.size());
-        System.out.println("Total number of flights handled: " + (arrivalStatistics.size() + departureStatistics.size()));
-        System.out.println("Average number of arrival per hour: " + arrivalStatistics.size() / 24);
-        System.out.println("Average number of departure per hour: " + departureStatistics.size() / 24);
-        System.out.println("Departures remaining in queue: " + departureQueue.size());
-        System.out.println("Arrivals remaining in queue: " + arrivalQueue.size());
-        System.out.println("Number of rerouted Arrivals: " + reroutedStatistics.size());
-        System.out.println("Number of delayed Departures: " + delayedStatistics.size());
-        System.out.println("Total idle time: " + (idleTime/60 + ":" + String.format("%02d",idleTime % 60)));
-        System.out.printf("Percent time idle runway: %.2f percent\n", ((double) idleTime/timeInterval *100));
-        System.out.println("Average departure time in queue: " + averageDepartureTime() + " minutes");
-        System.out.println("Average arrival time in queue: " + averageArrivalTime() + " minutes");
+        output_block();
     }
 
-//Was trying to think of some way to try for extra credit, decided on printing the stats to a file
+    //Was trying to think of some way to try for extra credit, decided on printing the stats to a file
+    //Which then led to a good 8 (real hours) rabbit hole with a menu system, objects and lambda's
     public void printSimSummaryStatisticsToFile(){
         Date date = new Date();
         //wanted each file name to be unique so using date and time
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         try {
             //Went with txt vs a csv so it would be more like a structured "Report"
-            PrintWriter printWriter = new PrintWriter(new FileWriter("resources/ATC-Stats-"+dateFormat.format(date)+".txt", true));
-            printWriter.println("******************************************");
-            printWriter.println("Automated Air Traffic Control Simulator Summary Statistics");
-            printWriter.println("******************************************");
-            printWriter.println("Report Generated on : "+dateFormat.format(date));
-            printWriter.println("******************************************");
-            printWriter.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
-            printWriter.println("Number of arrivals: " + arrivalStatistics.size());
-            printWriter.println("Number of departures: " + departureStatistics.size());
-            printWriter.println("Total number of flights handled: " + (arrivalStatistics.size() + departureStatistics.size()));
-            printWriter.println("Average number of arrival per hour: " + arrivalStatistics.size() / 24);
-            printWriter.println("Average number of departure per hour: " + departureStatistics.size() / 24);
-            printWriter.println("Departures remaining in queue: " + departureQueue.size());
-            printWriter.println("Arrivals remaining in queue: " + arrivalQueue.size());
-            printWriter.println("Number of rerouted Arrivals: " + reroutedStatistics.size());
-            printWriter.println("Number of delayed Departures: " + delayedStatistics.size());
-            printWriter.println("Total idle time: " + (idleTime/60 + ":" + String.format("%02d",idleTime % 60)));
-            printWriter.println("Percent time idle runway: " + ((double) idleTime/timeInterval *100) + " percent");
-            printWriter.println("Average departure time in queue: " + averageDepartureTime() + " minutes");
-            printWriter.println("Average arrival time in queue: " + averageArrivalTime() + " minutes");
-            printWriter.println("******************************************");
-            printWriter.println("Report File Concludes");
-            printWriter.println("******************************************");
+            PrintStream stdout = System.out;
+            PrintStream o = new PrintStream(new File("resources/ATC-Stats-"+dateFormat.format(date)+".txt"));
+            System.setOut(o);
+            System.out.println("******************************************");
+            System.out.println("Automated Air Traffic Control Simulator Summary Statistics");
+            System.out.println("******************************************");
+            System.out.println("Report Generated on : "+dateFormat.format(date));
+            System.out.println("******************************************");
+            output_block();
+            System.out.println("******************************************");
+            System.out.println("Report File Concludes");
+            System.out.println("******************************************");
+            //without setting and calling this, the menu/system appear to hang
+            //what's actually happening is that it "breaks" system.out even after a flush and close
+            System.setOut(stdout);
+            o.flush();
+            o.close();
             System.out.println("Report File Created");
-            printWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+//This took me far longer to figure out than I'd like to admit.
+//Creating objects is no issue, however, figuring out how to use the same code
+//to print to a file and the console took me a few hours
+//I could have just done two blocks, one with System.out.println and one with printWriter.println
+//But it bothered me enough to find a better solution
+
+    void output_block(){
+        System.out.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
+        System.out.println("Total number of flights handled: " + (arrivalStatistics.size() + departureStatistics.size()));
+        System.out.println("Total idle time: " + (idleTime/60 + ":" + String.format("%02d",idleTime % 60)));
+        System.out.printf("Percent time idle runway: %.2f percent\n", ((double) idleTime/timeInterval *100));
+        System.out.println("Arrival Statistics");
+        System.out.println("Number of arrivals: " + arrivalStatistics.size());
+        System.out.println("Average number of arrival per hour: " + arrivalStatistics.size() / 24);
+        System.out.println("Number of rerouted Arrivals: " + reroutedStatistics.size());
+        System.out.println("Average arrival time in queue: " + averageArrivalTime() + " minutes");
+        System.out.println("Arrivals remaining in queue: " + arrivalQueue.size());
+        System.out.println("Departure Statistics");
+        System.out.println("Number of departures: " + departureStatistics.size());
+        System.out.println("Average number of departure per hour: " + departureStatistics.size() / 24);
+        System.out.println("Number of rerouted Departures: " + delayedStatistics.size());
+        System.out.println("Average departure time in queue: " + averageDepartureTime() + " minutes");
+        System.out.println("Departures remaining in queue: " + departureQueue.size());
+    }
     private int averageDepartureTime(){
         int sum = 0;
         for(Flight flight : departureStatistics){
@@ -93,11 +96,6 @@ public class ATCSim
         }
         return  sum/arrivalStatistics.size();
     }
-
-//The given math in the assignment was to use mean here (double mean)
-//But to me, it seemed like using lambda made more sennse here, or double lambda as it were.
-//We bascially are saying : Let x=1,p=1 ... Generate ui=U(0,1) and make x=x(ui);
-//So If x≤exp(-lambda), then x-1 is the value we're looking for. Else it should be, x=x+1 and kick back to the generate ui portion.
     public static int getPoissonRandom(double lambda){
         double L = Math.exp(-lambda);
         int x = 0;
@@ -108,12 +106,11 @@ public class ATCSim
         return x - 1;
     }
     void processArrival(double meanArrivalFreq){
-        int count;
+        int count = 0;
         timerCounter++;
         timeInterval++;
-        if ((count = getPoissonRandom(meanArrivalFreq)) > 0){
+        if ((count = getPoissonRandom(meanArrivalFreq)) > 0)
             addToArrivalQueue(count);
-        }
         else{
             if(arrivalQueue.isEmpty()){
                 idleTime++;
@@ -122,7 +119,7 @@ public class ATCSim
         if (timerCounter >= MIN_FLIGHT_SPACING){
             if (arrivalQueue.size() > 0){
                 timerCounter = 0;
-                Flight flight = arrivalQueue.pop();
+                Flight flight = arrivalQueue.remove();
                 flight.setMinuteOutQueue(timeInterval);
                 arrivalStatistics.add(flight);
                 System.out.println(flight + " arrived at " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
@@ -159,13 +156,14 @@ public class ATCSim
         if (timerCounter >= MIN_FLIGHT_SPACING){
             if (departureQueue.size() > 0){
                 timerCounter = 0;
-                Flight flight = departureQueue.pop();
+                Flight flight = departureQueue.remove();
                 flight.setMinuteOutQueue(timeInterval);
                 departureStatistics.add(flight);
                 System.out.println(flight + " departed at " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
             }
         }
     }
+
     private void addToDepartureQueue(int count){
         while(count > 0){
             Flight new_flight = new Flight("UA" + ++flight_number , FlightType.Departure);
@@ -175,11 +173,12 @@ public class ATCSim
                     departureQueue.add(new_flight);
                 }
                 else{
-                    System.out.println(new_flight + " delayed at " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
+                    System.out.println("Warning: Queue Full for "+new_flight + " rerouted at " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
                     delayedStatistics.add(new_flight);
                 }
             }
             count--;
         }
     }
+
 }
