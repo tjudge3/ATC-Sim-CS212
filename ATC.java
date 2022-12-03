@@ -92,10 +92,3 @@ public class ATC
 
 
 }
-
-
-//The menu system went through a lot of different iterations
-// Print out statistics calculated from the simulation.
-//sim.printSimSummaryStatistics();
-// Print out statistics calculated from the simulation.
-//sim.printSimSummaryStatisticsToFile();
