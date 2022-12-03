@@ -27,8 +27,6 @@ public class ATCSim {
         output_block();
     }
 
-    //Was trying to think of some way to try for extra credit, decided on printing the stats to a file
-    //Which then led to a good 8 (real hours) rabbit hole with a menu system, objects and lambda's
     public void printSimSummaryStatisticsToFile(){
         Date date = new Date();
         //wanted each file name to be unique so using date and time
@@ -58,11 +56,7 @@ public class ATCSim {
         }
     }
 
-//This took me far longer to figure out than I'd like to admit.
-//Creating objects is no issue, however, figuring out how to use the same code
-//to print to a file and the console took me a few hours
-//I could have just done two blocks, one with System.out.println and one with printWriter.println
-//But it bothered me enough to find a better solution
+
 
     void output_block(){
         System.out.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
