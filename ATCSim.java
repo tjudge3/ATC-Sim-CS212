@@ -1,4 +1,3 @@
-//tjudge
 import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
