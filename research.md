@@ -14,10 +14,10 @@ https://cs.gmu.edu/~eclab/projects/mason/docs/classdocs/sim/util/distribution/Po
 
 ### Airlines
 
-UA - United Airlines
-DL - Delta Airlines
-AA - American Airlines 
-US - American Airlines (Formerly US Airways)
-BA - British Airways 
-WN - South West
-B6 - JetBlue
+UA - United Airlines  
+DL - Delta Airlines  
+AA - American Airlines  
+US - American Airlines (Formerly US Airways)  
+BA - British Airways  
+WN - South West  
+B6 - JetBlue  
