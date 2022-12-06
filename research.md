@@ -11,3 +11,13 @@ https://github.com/blazegraph/database/blob/3127706f0b6504838daae226b9158840d2df
 ### Poisson Distribution
 p(k) = (mean^k / k!) * exp(-lambda) for k >= 0.
 https://cs.gmu.edu/~eclab/projects/mason/docs/classdocs/sim/util/distribution/Poisson.html
+
+### Airlines
+
+UA - United Airlines
+DL - Delta Airlines
+AA - American Airlines 
+US - American Airlines (Formerly US Airways)
+BA - British Airways 
+WN - South West
+B6 - JetBlue
