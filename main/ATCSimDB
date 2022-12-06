@@ -1,0 +1,9 @@
+package main;
+
+public class ATCSimDB extends ATCSim {
+
+    String jdbcURL = "jdbc:mysql://localhost:3306/atc_flights";
+    String username = "[we don't upload creds]";
+    String password = "[we don't upload creds]";
+
+}
