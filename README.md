@@ -51,6 +51,7 @@
 		- [ ] For Export (Menu)
 		- [ ] For Export Dialog box		
 - [ ] Testing
+	- [ ] Setup test environment
 	- [ ] Create Unit Tests (JUnit)
 - [ ] Clean up code
 	- [ ] Remove unused imports
