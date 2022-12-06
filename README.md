@@ -41,7 +41,8 @@
 	- [ ] SubMenu - Display/Exports
 	- [ ] SubMenu - Export Types
 - [ ] Create/Implement Database (Postgres)
-- [ ] Create GUI App || Web Interface
+- [ ] Install Webserver (Tomcat)
+- [ ] ~~Create GUI App~~ || Web Interface
 	- [ ] (If) Create GUI
 		- [ ] For Info Display      
 		- [ ] For User Input (Parameters)      
