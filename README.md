@@ -40,6 +40,7 @@
 	- [ ] Algorithm Chooser 
 	- [ ] SubMenu - Display/Exports
 	- [ ] SubMenu - Export Types
+- [ ] Create/Implement Database (Postgres)
 - [ ] Create GUI App || Web Interface
 	- [ ] (If) Create GUI
 		- [ ] For Info Display      
