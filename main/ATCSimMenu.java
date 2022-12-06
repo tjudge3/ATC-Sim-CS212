@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Scanner;
 
 //breakout the console menu system into its own file
@@ -45,7 +47,7 @@ public class ATCSimMenu extends ATCSim {
     }
 
     public static void firstMenu(){
-        System.out.println("ATC Menu\n");
+        System.out.println("main.ATC Menu\n");
         System.out.println("======================================");
         System.out.println("|     Please select an option:      |");
         System.out.println("======================================");
