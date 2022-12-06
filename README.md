@@ -25,6 +25,7 @@
 	- [ ] Terminal
 	- [ ] BaggageClaim
 	- [ ] Airline
+		- [ ] Randomize Airlines/Codes (DL, UA, AA, BA, WN, B6)
 - [ ] Additional Stats
 	- [ ] Runway
 	- [ ] Taxi
