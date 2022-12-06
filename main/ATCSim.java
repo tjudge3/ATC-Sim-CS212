@@ -1,3 +1,4 @@
+package main;
 import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -25,15 +26,13 @@ public class ATCSim {
         System.out.println("******************************************");
         output_block();
     }
-
+    
     public void printSimSummaryStatisticsToFile(){
         Date date = new Date();
-        //wanted each file name to be unique so using date and time
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         try {
-            //Went with txt vs a csv so it would be more like a structured "Report"
             PrintStream stdout = System.out;
-            PrintStream o = new PrintStream(new File("resources/ATC-Stats-"+dateFormat.format(date)+".txt"));
+            PrintStream o = new PrintStream(new File("resources/main.ATC-Stats-"+dateFormat.format(date)+".txt"));
             System.setOut(o);
             System.out.println("******************************************");
             System.out.println("Automated Air Traffic Control Simulator Summary Statistics");
@@ -54,9 +53,8 @@ public class ATCSim {
             e.printStackTrace();
         }
     }
-
-
-
+    
+//Reusable Stats Block
     void output_block(){
         System.out.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
         System.out.println("Total number of flights handled: " + (arrivalStatistics.size() + departureStatistics.size()));
@@ -89,6 +87,8 @@ public class ATCSim {
         }
         return  sum/arrivalStatistics.size();
     }
+
+//p(k) = (mean^k / k!) * exp(-lambda) for k >= 0.
     public static int getPoissonRandom(double lambda){
         double L = Math.exp(-lambda);
         int x = 0;
@@ -98,6 +98,8 @@ public class ATCSim {
         } while (p > L);
         return x - 1;
     }
+//Implement Negative Binomal Distrubtion
+
     void processArrival(double meanArrivalFreq){
         int count = 0;
         timerCounter++;
