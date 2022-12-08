@@ -26,7 +26,7 @@ public class ATCSim {
         System.out.println("******************************************");
         output_block();
     }
-    
+
     public void printSimSummaryStatisticsToFile(){
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
@@ -43,8 +43,6 @@ public class ATCSim {
             System.out.println("******************************************");
             System.out.println("Report File Concludes");
             System.out.println("******************************************");
-            //without setting and calling this, the menu/system appear to hang
-            //what's actually happening is that it "breaks" system.out even after a flush and close
             System.setOut(stdout);
             o.flush();
             o.close();
@@ -54,9 +52,8 @@ public class ATCSim {
         }
     }
     
-//Reusable Stats Block
     void output_block(){
-        System.out.println("Time period stimulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
+        System.out.println("Time period simulated: " + (timeInterval/60 + ":" + String.format("%02d",timeInterval % 60)));
         System.out.println("Total number of flights handled: " + (arrivalStatistics.size() + departureStatistics.size()));
         System.out.println("Total idle time: " + (idleTime/60 + ":" + String.format("%02d",idleTime % 60)));
         System.out.printf("Percent time idle runway: %.2f percent\n", ((double) idleTime/timeInterval *100));
@@ -161,7 +158,8 @@ public class ATCSim {
 
     private void addToDepartureQueue(int count){
         while(count > 0){
-            Flight new_flight = new Flight("UA" + ++flight_number , FlightType.Departure);
+//Randomize Airline DL, UA, AA, BA, WN, B6?
+            Flight new_flight = new Flight("DL" + ++flight_number , FlightType.Departure);
             if(arrivalQueue.isEmpty()){
                 if(departureQueue.size() < 5){
                     new_flight.setMinuteOutQueue(timeInterval);
